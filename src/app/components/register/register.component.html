@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="card" style="margin-top: 5%;">
+    <div style="width: 50%; margin-left: 25%;margin-top: 5%;">
+      <h1 style="text-align: center;">Rigster</h1>
+      <form (ngSubmit)="registerUser()" method="post" >
+        <span *ngIf="error" class="text-danger">
+          {{errorMessage}}</span>
+          <!-- Name -->
+          <div *ngIf="error && errors.name" class="errors">
+            <span  class="text-danger">
+                {{errors.name}}</span>
+        </div>
+          <div class="form-outline mb-4">
+          <label class="form-label" for="name">Name</label>
+            <input required type="text" [(ngModel)]="name" [ngModelOptions]="{standalone:true}" id="name" class="form-control" />
+          </div>
+          <div *ngIf="error && errors.email" class="errors">
+            <span  class="text-danger">
+                {{errors.email}}</span>
+        </div>
+           <!-- Email input -->
+           <div class="form-outline mb-4">
+              <label class="form-label" for="email">Email address</label>
+                <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone:true}" id="email" class="form-control" />
+              </div>
+  
+               <!-- Password -->
+               <div *ngIf="error && errors.password" class="errors">
+                <span  class="text-danger">
+                    {{errors.password}}</span>
+            </div>
+          <div class="form-outline mb-4">
+              <label class="form-label" for="password">Password</label>
+                <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone:true}" id="password" class="form-control" />
+            </div>
+      
+             <!-- Password Confirmation -->
+             <div *ngIf="error && errors.password_confirmation" class="errors">
+              <span  class="text-danger">
+                  {{errors.password_confirmation}}</span>
+          </div>
+          <div class="form-outline mb-4">
+            <label class="form-label" for="password_confirmation">Password Confirmation</label>
+              <input type="password" [(ngModel)]="password_confirmation" [ngModelOptions]="{standalone:true}" id="password_confirmation" class="form-control" />
+          </div>
+        
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+        
+          <!-- Register buttons -->
+          <div class="text-center">
+            <p>member? <a routerLink="/login">Login</a></p>
+          </div>
+        </form>
+  </div>
+  </div>
+</div>
+

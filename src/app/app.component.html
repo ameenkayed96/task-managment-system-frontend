@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/tasks">Task Managment System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex; justify-content: flex-end;margin-right: 3%;">
+    <a *ngIf="!loggedUser()" routerLink="/login"><button class="btn btn-success pull-right" > Login</button></a>
+    <a *ngIf="!loggedUser()" routerLink="/register"><button class="btn btn-secondary pull-right"  style="margin-left: 5%;"> Register</button></a>
+    <a *ngIf="loggedUser()"><button class="btn btn-secondary pull-right" (click)="logout()"  style="margin-left: 5%;"> Logout</button></a>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+<!-- <app-login></app-login> -->

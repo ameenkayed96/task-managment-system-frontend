@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="card" style="margin-top: 5%;">
+        <div style="width: 50%; margin-left: 25%;margin-top: 5%;">
+            <app-back-btn></app-back-btn>
+        
+            <h1 style="text-align: center;">Add Task</h1>
+            <form (ngSubmit)="addTask()" method="post">
+                
+             
+                <!-- Name -->
+                <div class="form-outline mb-4">
+                    <div class="form-check">
+                        <small>Check this if you want to add </small>
+                        <input (change)="checkSub()" class="form-check-input" type="checkbox" [(ngModel)]="sub" [ngModelOptions]="{standalone:true}" value="" id="flexCheckChecked" checked>
+                        <label style="color: red;" class="form-check-label" for="flexCheckChecked">
+                          Sub Task
+                        </label>
+                    </div>
+                    <hr>
+                    <div *ngIf="error && errors.description" class="errors">
+                        <span  class="text-danger">
+                            {{errors.description}}</span>
+                    </div>
+                <label class="form-label" for="name">description</label>
+                  <textarea required [(ngModel)]="description" [ngModelOptions]="{standalone:true}" id="description" class="form-control" ></textarea>
+                </div>
+                <div *ngIf="error && errors.dead_line" class="errors">
+                    <span  class="text-danger">
+                        {{errors.dead_line}}</span>
+                </div>
+                 <!-- Email input -->
+                 <div *ngIf="!sub" class="form-outline mb-4">
+                    <label class="form-label" for="dead_line">DeadLine</label>
+                      <input type="date" [(ngModel)]="dead_line" [ngModelOptions]="{standalone:true}" id="dead_line" class="form-control" />
+                    </div>
+                    <!--Using items input-->
+                    <div *ngIf="error && errors.parent_task" class="errors">
+                        <span  class="text-danger">
+                            {{errors.parent_task}}</span>
+                    </div>
+                    <div *ngIf="sub">
+                        <label  class="form-label" for="name">Parent Task</label>
+                        <ng-select [ngModelOptions]="{standalone:true}" [(ngModel)]="parent_task">
+                            <ng-option *ngFor="let task of tasks" [value]="task.id">{{task.description}}</ng-option>
+                         </ng-select>
+                    </div>
+                    <div *ngIf="error && errors.category_id" class="errors">
+                        <span  class="text-danger">
+                            {{errors.category_id}}</span>
+                    </div>
+                    <div *ngIf="!sub">
+                        <label class="form-label" for="name">Parent Category</label>
+                        <ng-select [multiple]="true" [ngModelOptions]="{standalone:true}" [(ngModel)]="category_id">
+                           <ng-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</ng-option>
+                        </ng-select>
+                    </div>
+                  
+        
+                    
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Save</button>
+              
+              </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="card" style="margin-top: 5%;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-10">
+                    <h5 class="card-title">All Tasks</h5>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-group mb-3">
+                        <input type="text"  [(ngModel)]="searchText" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button (click)="search()" class="btn btn-primary" type="button">Search</button>
+                        </div>
+                      </div>           
+                </div>
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-2">
+                    <a routerLink="/addTask"><button class="btn btn-secondary pull-right" >Add Task</button></a>
+                </div>
+            </div>
+            <table class="table" style="margin-top: 3%;table-layout:fixed;">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Creation Date</th>
+                    <th scope="col">DeadLine</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Destails</th>
+            
+                  </tr>
+                </thead>
+                <tbody>
+                 
+                  <tr *ngFor="let task of tasks">
+                    <th scope="row">{{task.id ?? ''}}</th>
+                    <td>{{task.description ?? ''}}</td>
+                    <td>{{task.created_at ?? ''}}</td>
+                    <td>{{task.dead_line ?? ''}}</td>
+                    <td>{{task.flag == 1 ? 'Finished' : 'Not Finished'}}</td>
+                    <td>{{task.user.name ?? ''}}</td>
+                    <td><a [routerLink]="[ '/task',task.id]"><button class="btn btn-success pull-right" > Show</button></a></td>
+            
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      <app-pagination  [pageOffset]="paginator.total_page" (paginationData) = "receivePaginationdData($event)"  [page]="paginator.current_page" ></app-pagination>
+    </div>
+   
+</div>
